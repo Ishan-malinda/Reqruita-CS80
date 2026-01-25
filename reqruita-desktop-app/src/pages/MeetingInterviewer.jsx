@@ -74,3 +74,34 @@ export default function MeetingInterviewer({ session, onEnd }) {
         document.body.classList.add("rq-noscr");
         return () => document.body.classList.remove("rq-noscr");
     }, []);
+
+    // Start camera+mic once so labels appear on Windows
+    useEffect(() => {
+        let mounted = true;
+
+        (async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: true });
+                if (!mounted) return;
+
+                setCamStream(stream);
+                if (videoRef.current) videoRef.current.srcObject = stream;
+
+                const list = await navigator.mediaDevices.enumerateDevices();
+                const mics = list.filter((d) => d.kind === "audioinput");
+                const cams = list.filter((d) => d.kind === "videoinput");
+                setDevices({ mics, cams });
+
+                if (mics[0]?.deviceId) setSelectedMicId(mics[0].deviceId);
+                if (cams[0]?.deviceId) setSelectedCamId(cams[0].deviceId);
+            } catch (e) {
+                setError("Could not access camera/microphone. Please check permissions.");
+            }
+        })();
+
+        return () => {
+            mounted = false;
+            stopStream(camStream);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
