@@ -155,3 +155,95 @@ body.rq-noscr{
   }
   .rs-left{ min-height: 260px; }
 }
+
+
+/* ================= Login ================= */
+.lg-wrap{
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+  padding: var(--rq-safe);
+  overflow: hidden;
+}
+
+.lg-card{
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.lg-title{
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0 0 14px;
+  color: var(--rq-text);
+}
+
+.lg-field{ margin-bottom: 12px; }
+
+.lg-label{
+  font-size: 11px;
+  color: var(--rq-muted);
+  margin-bottom: 6px;
+}
+
+.lg-input{
+  width: 100%;
+  height: 36px;
+  padding: 0 10px;
+  border-radius: 6px;
+  border: 1px solid var(--rq-border);
+  outline: none;
+  font-size: 13px;
+}
+
+.lg-input:focus{
+  border-color: rgba(75,47,182,0.55);
+  box-shadow: 0 0 0 4px rgba(75,47,182,0.14);
+}
+
+.lg-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0 12px;
+}
+
+.lg-check{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--rq-text);
+}
+
+.lg-link{
+  font-size: 12px;
+  color: #2563eb;
+  text-decoration: none;
+}
+.lg-link:hover{ text-decoration: underline; }
+
+.lg-primary{
+  width: 100%;
+  height: 40px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: var(--rq-primary);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 6px 14px rgba(75,47,182,0.22);
+  transition: 150ms ease;
+}
+.lg-primary:hover{ background: var(--rq-primary-hover); }
+
+.lg-err{
+  font-size: 12px;
+  color: #dc2626;
+  margin: 6px 0 10px;
+}
