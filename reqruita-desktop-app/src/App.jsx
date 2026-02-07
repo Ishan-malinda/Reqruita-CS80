@@ -98,10 +98,13 @@ export default function App() {
       {step === "login" && (
         <Login
           role={role}
-          onLogin={onLogin}
-          onBack={() => setStep("role")}
-          // If Login.jsx uses onSuccess internally, keep consistent:
-          onSuccess={() => setStep("devices")}
+          onSuccess={(payload) => {
+            const res = onLogin(payload);     // <-- IMPORTANT: validate + setSession properly
+            if (!res.ok) {
+              // If your Login page supports showing error, you can handle it there later
+              console.log(res.error);
+            }
+          }}
         />
       )}
 
